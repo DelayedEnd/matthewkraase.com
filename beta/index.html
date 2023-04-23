@@ -1,60 +1,149 @@
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+    <head>
+        <title>Welcome&nbsp;&nbsp;-&nbsp;&nbsp;MK</title>
+        <link rel="stylesheet" href="../assets/main.css"/>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+        <script type="text/javascript" src="../assets/main.js"></script>
+    </head>
+    <body>
+        <div id="items">
+            <div class="textItem" id="text1">
+                <h1>1. <a href="../index.html">Construction Page</a></h1>
+            </div>
+            <div class="textItem" id="text2">
+                <h1>2. <a href="../index.html">Legacy Site</a></h1>
+            </div>
+            <div class="textItem" id="text3">
+                <h1>3. <a href="../index.html">Resume</a></h1>
+            </div>
+            <div class="textItem" id="text4">
+                <h1>4. <a href="../index.html">About Me</a></h1>
+            </div>
+            <div class="textItem" id="text5">
+                <h1>5. <a href="../index.html">Games</a></h1>
+            </div>
+            <div class="textItem" id="text6">
+                <h1>6. <a href="../index.html">Projects</a></h1>
+            </div>
+            <div class="textItem" id="text7">
+                <h1>7. <a href="../index.html">Social Links</a></h1>
+            </div>
+            <div class="textItem" id="text8">
+                <h1>8. <a href="../index.html">Legacy Site</a></h1>
+            </div>
+            <div class="textItem" id="text9">
+                <h1>9. <a href="../index.html">Legacy Site</a></h1>
+            </div>
+            <div class="textItem" id="text10">
+                <h1>10. <a href="../index.html">Legacy Site</a></h1>
+            </div>
+        </div>
+    </body>
+</html>
 
-<h1 style="font-family: Arial, Helvetica, sans-serif;">Test!</h1>
 <style>
-</style>
-
-<script>
-    let HOWMANY = 100;
-    let HOWMOVE = 50;
-    let HOWFAST = 50;
-
-    for (TEXTS = 1; TEXTS < HOWMANY + 1; TEXTS++){
-        var element = document.createElement("div");
-        element.id = "test" + TEXTS;
-        element.innerText = "TEST TEXT " + TEXTS;
-        element.style.position = "absolute";
-        $("body").append(element);
+    #items {
+        margin-top: 300px;
+        margin-left: 300px;
     }
-
-    function doTheThing() {
-        for (i = 1; i < HOWMANY + 1; i++) {
-            random = Math.random();
-            console.log(random);
-            let item = "#test" + i + "";
-            if (random < 0.5) {
-                if ($(item).css('top').split('px')[0] > 0 && $(item).css('left').split('px')[0] > 0) {
-                    $(item).animate({
-                        'top' : "-=" + Math.random() * HOWMOVE + "px",
-                        'left' : "-=" + Math.random() * HOWMOVE + "px"
-                    }, HOWFAST);
-                }
-            }
-            else {
-                if ($(item).css('top').split('px')[0] < window.innerHeight - 50 && $(item).css('left').split('px')[0] < window.innerWidth - 100) {
-                    $(item).animate({
-                        'top' : "+=" + Math.random() * HOWMOVE + "px",
-                        'left' : "+=" + Math.random() * HOWMOVE + "px"
-                    }, HOWFAST);
-                }
-            }
-            }
-        }
-    {}
-
-    var auto = window.setInterval(function(){
-        doTheThing();
-    }, HOWFAST);
-</script>
-
-<style>
-    .test {
+    .textItem {
         position: absolute;
+        transform-origin: -150px -150px;
+        transition: .4s ;
     }
     html, body {
         padding: 0;
         margin: 0;
-        height: 100%;
-        overflow: hidden;
     }
 </style>
+
+<script>
+    var initialDegrees = 36
+    var degrees = -36;
+    var existingDegrees = []
+    var selected = 1;
+
+    function init() {
+        for (i = 1; i < 11; i++) {
+            var toChange = "#text" + i;
+            if (i == selected) {
+                $(toChange).css({
+                    'background' : 'white'
+                });
+            }
+            else {
+                $(toChange).css({
+                    'background' : 'black'
+                });
+            }
+            degrees += initialDegrees;
+            existingDegrees[i] = degrees;
+            $(toChange).css({
+                '-webkit-transform' : 'rotate('+ degrees +'deg)',
+                '-moz-transform' : 'rotate('+ degrees +'deg)',
+                '-ms-transform' : 'rotate('+ degrees +'deg)',
+                'transform' : 'rotate('+ degrees +'deg)'
+            });
+        }
+    }
+
+    init();
+
+    $(window).on('wheel', function(event){
+        if (event.originalEvent.deltaY < 0) {
+            selected++;
+            if (selected > 10 ) selected = 1;
+            if (selected < 1) selected = 10;
+            for (i = 1; i < 11; i++) {
+                var toChange = "#text" + i;
+                existingDegrees[i] -= 36;
+                console.log(selected + " " + i);
+                if (i == selected) {
+                    $(toChange).css({
+                        'background' : 'white'
+                    });
+                }
+                else {
+                    $(toChange).css({
+                        'background' : 'black'
+                    });
+                }
+                $(toChange).css({
+                    '-webkit-transform' : 'rotate('+ existingDegrees[i] +'deg)',
+                    '-moz-transform' : 'rotate('+ existingDegrees[i] +'deg)',
+                    '-ms-transform' : 'rotate('+ existingDegrees[i] +'deg)',
+                    'transform' : 'rotate('+ existingDegrees[i] +'deg)'
+                });
+            }
+        }
+        else {
+            selected--;
+            if (selected > 10 ) selected = 1;
+            if (selected < 1) selected = 10;
+            for (i = 1; i < 11; i++) {
+                var toChange = "#text" + i;
+                existingDegrees[i] += 36;
+                console.log(selected + " " + i);
+                if (i == selected) {
+                    $(toChange).css({
+                        'background' : 'white'
+                    });
+                }
+                else {
+                    $(toChange).css({
+                        'background' : 'black'
+                    });
+                }
+                $(toChange).css({
+                    '-webkit-transform' : 'rotate('+ existingDegrees[i] +'deg)',
+                    '-moz-transform' : 'rotate('+ existingDegrees[i] +'deg)',
+                    '-ms-transform' : 'rotate('+ existingDegrees[i] +'deg)',
+                    'transform' : 'rotate('+ existingDegrees[i] +'deg)'
+                });
+            }
+        }
+    });
+
+</script>
