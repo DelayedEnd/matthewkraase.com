@@ -16,31 +16,31 @@
                 <h1>1. <a href="../index.html">Construction Page</a></h1>
             </div>
             <div class="textItem" id="text2">
-                <h1>2. <a href="../index.html">Legacy Site</a></h1>
+                <h1>2. <a href="../beta/legacy/index.html">Legacy Site</a></h1>
             </div>
             <div class="textItem" id="text3">
-                <h1>3. <a href="../index.html">Resume</a></h1>
+                <h1>3. <a href="../beta/resume/index.html">Resume</a></h1>
             </div>
             <div class="textItem" id="text4">
-                <h1>4. <a href="../index.html">About Me</a></h1>
+                <h1>4. <a href="../beta/about/index.html">About Me</a></h1>
             </div>
             <div class="textItem" id="text5">
-                <h1>5. <a href="../index.html">Games</a></h1>
+                <h1>5. <a href="../beta/games/index.html">Games</a></h1>
             </div>
             <div class="textItem" id="text6">
-                <h1>6. <a href="../index.html">Projects</a></h1>
+                <h1>6. <a href="../beta/projects/index.html">Projects</a></h1>
             </div>
             <div class="textItem" id="text7">
-                <h1>7. <a href="../index.html">Social Links</a></h1>
+                <h1>7. <a href="../beta/social/index.html">Social Links</a></h1>
             </div>
             <div class="textItem" id="text8">
-                <h1>8. <a href="../index.html">Legacy Site</a></h1>
+                <h1>8. <a href="../beta/utilities/index.html">Utilities</a></h1>
             </div>
             <div class="textItem" id="text9">
-                <h1>9. <a href="../index.html">Legacy Site</a></h1>
+                <h1>9. <a href="../beta/fun/index.html">Fun</a></h1>
             </div>
             <div class="textItem" id="text10">
-                <h1>10. <a href="../index.html">Legacy Site</a></h1>
+                <h1>10. <a href="../beta/misc/index.html">Misc.</a></h1>
             </div>
         </div>
     </body>
@@ -51,6 +51,7 @@
         position: absolute;
         margin-top: 75px;
         margin-left: 50px;
+        width: 100px;
     }
     #items {
         position: absolute;
@@ -63,10 +64,6 @@
         transform-origin: -150px -150px;
         transition: .4s ;
     }
-    html, body {
-        padding: 0;
-        margin: 0;
-    }
 </style>
 
 <script>
@@ -75,30 +72,23 @@
     var existingDegrees = []
     var selected = 1;
     var menuActive = false;
-
     function menuEvent() {
         if (menuActive == false) {
             init();
-            for (i = 1; i < 11; i++) {
-                var toChange = "#text" + i;
-                $('#items:not(#menuButton)').animate({
-                    'margin-top' : '200px',
-                    'margin-left' : '200px'
-                }, {duration: 100, easing: "linear"});
-                //$(toChange).css({'display' : 'block'});
-                menuActive = true;
-            }
+            $('#items:not(#menuButton)').animate({
+                'margin-top' : '200px',
+                'margin-left' : '200px'
+            }, {duration: 100, easing: "linear"});
+            menuActive = true;
+            $('#menuButton').text('Close');
         }
         else {
-            for (i = 1; i < 11; i++) {
-                var toChange = "#text" + i;
-                $('#items:not(#menuButton)').animate({
-                    'margin-top' : '-100px',
-                    'margin-left' : '-100px'
-                }, {duration: 100, easing: "linear"});
-                //$(toChange).css({'display' : 'none'});
-                menuActive = false;
-            }
+            $('#items:not(#menuButton)').animate({
+                'margin-top' : '-200px',
+                'margin-left' : '-200px'
+            }, {duration: 100, easing: "linear"});
+            menuActive = false;
+            $('#menuButton').text('Menu');
         }
     }
     function init() {
@@ -128,9 +118,7 @@
             });
         }
     }
-
     init();
-
     $(window).on('wheel', function(event){
         if (menuActive == false) return;
         if (event.originalEvent.deltaY < 0) {
@@ -186,5 +174,4 @@
             }
         }
     });
-
 </script>
