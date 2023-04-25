@@ -28,3 +28,6 @@
     transform-origin: -150px -150px;
     transition: .4s ;
 }
+html, body {
+    overscroll-behavior: none;
+}
