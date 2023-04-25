@@ -58,12 +58,22 @@ $(window).on('wheel', function(event){
         }
     }
 });
+function movingStop()
+{
+    mobileMoving = false;
+}
+var lastY;
+var mobileMoving = false;
 $(window).on('touchmove', function(event){
+    var currentY = event.originalEvent.touches[0].clientY;
+    console.log(mobileMoving);
     if (menuActive == false) return;
-    if (event.originalEvent.deltaY < 0) {
+    if (mobileMoving == true) return;
+    if (currentY < lastY) {
         selected++;
         if (selected > 10 ) selected = 1;
         if (selected < 1) selected = 10;
+        mobileMoving = true;
         for (i = 1; i < 11; i++) {
             var toChange = "#menuItem" + i;
             existingDegrees[i] -= 36;
@@ -72,11 +82,13 @@ $(window).on('touchmove', function(event){
             else { $(toChange).css({'background' : 'black'}); }
             $(toChange).css({ '-webkit-transform' : 'rotate('+ existingDegrees[i] +'deg)', '-moz-transform' : 'rotate('+ existingDegrees[i] +'deg)', '-ms-transform' : 'rotate('+ existingDegrees[i] +'deg)', 'transform' : 'rotate('+ existingDegrees[i] +'deg)' });
         }
+        setTimeout(movingStop, 100);
     }
-    else {
+    if (currentY > lastY) {
         selected--;
         if (selected > 10 ) selected = 1;
         if (selected < 1) selected = 10;
+        mobileMoving = true;
         for (i = 1; i < 11; i++) {
             var toChange = "#menuItem" + i;
             existingDegrees[i] += 36;
@@ -85,6 +97,8 @@ $(window).on('touchmove', function(event){
             else { $(toChange).css({'background' : 'black'}); }
             $(toChange).css({ '-webkit-transform' : 'rotate('+ existingDegrees[i] +'deg)', '-moz-transform' : 'rotate('+ existingDegrees[i] +'deg)', '-ms-transform' : 'rotate('+ existingDegrees[i] +'deg)', 'transform' : 'rotate('+ existingDegrees[i] +'deg)' });
         }
+        setTimeout(movingStop, 100);
     }
+    lastY = currentY;
 });
     ////////        END NAV WHEEL        ////////
