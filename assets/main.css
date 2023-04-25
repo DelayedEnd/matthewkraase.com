@@ -4,12 +4,24 @@
     margin-left: 0px;
     width: 100px;
     z-index: 2;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 #menuItems {
     position: absolute;
     width: 1000px;
     margin-top: -100px;
     margin-left: -100px;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 .menuItem {
     position: absolute;

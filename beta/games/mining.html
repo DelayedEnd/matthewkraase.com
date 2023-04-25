@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <title>Bitcoin Mining</title>
+    <style>
+      html {
+        background-color: black;
+      }
+      #upgrade-menu {
+        background: black;
+        width: 150px;
+        padding: 25px;
+        float: left;
+        border: 2px solid white;
+      }
+      #errors {
+        position:absolute;
+        margin-top: 350px;
+        color: red;
+        float: left;
+        margin-left: 10px;
+        width:500px;
+      }
+      #upgrade-menu > button, #manual-mine > button {
+        background: black;
+        border-color: white;
+        color: white;
+        padding: 10px;
+        width:150px;
+      }
+      #upgrade-menu > button:hover, #manual-mine > button:hover {
+        border-color: burlywood;
+        color: burlywood;
+      }
+      #money-display {
+        width: 250px;
+        float: right;
+        border: 2px solid white;
+        background-color: black;
+        color: white;
+      }
+      #manual-mine {
+        position: absolute;
+        width: 150px;
+        background-color: black;
+        padding: 40px;
+        left: 0;
+        right: 0;
+        margin: auto;
+        border: 2px solid white;
+      }
+      #mining-difficulty {
+        color: white;
+        text-align: center;
+        margin-top: 0px;
+      }
+      #money-amount {
+        float: right;
+        margin-right: 20px;
+      }
+      #dollar-sign {
+        float: left;
+        margin-left: 20px;
+      }
+      #per-second-amount {
+        float: right;
+        margin-right: 25px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="upgrade-menu">
+      <button onclick="buyMiner('calc')" id="">Calculator (15)</button><br><br>
+      <button onclick="buyMiner('usb')" id="">USB Miner (50)</button><br><br>
+      <button onclick="buyMiner('gpu')" id="">Graphics Card (100)</button><br><br>
+      <button onclick="buyMiner('server')" id="">Server (500)</button><br><br>
+      <button onclick="buyMiner('asic')" id="">ASIC Miner (1000)</button>
+    </div>
+    <div id="errors">
+      <h1 id="error-display"></h1>
+    </div>
+    <div id="manual-mine">
+      <h1 id="mining-difficulty"></h1>
+      <button onclick="manualMine()">Paper/Pencil</button>
+    </div>
+    <div id="money-display">
+      <h1 id="dollar-sign">$</h1>
+      <h1 id="money-amount">0</h1><br><br><br><br><hr>
+      <h2 id="per-second-amount"></h2>
+    </div>
+    <script>
+      window.addEventListener('beforeunload', function() { save() });
+      window.addEventListener('load', function() { load() });
+    </script>
+  </body>
+</html>
+<button onclick="reset()">Clear Progress</button>
+
+<script>
+    var money = 0;
+var moneyPerSecond = 0;
+var miningDifficulty = 10;
+var level = 1;
+
+function manualMine()
+{
+    miningDifficulty -= 1;
+    updateDifficulty();
+
+    //money++;
+    //updateMoney();
+}
+
+function updateMoney()
+{
+    document.getElementById("money-amount").innerText = money;
+}
+
+function updatePerSecond()
+{
+    document.getElementById("per-second-amount").innerText = moneyPerSecond + " /s";
+}
+
+function updateDifficulty()
+{
+    document.getElementById("mining-difficulty").innerText = miningDifficulty;
+    if (miningDifficulty <= 0)
+    {
+        level++;
+        miningDifficulty = level * (10 * level / 2);
+        money += level * (10 * level / 2);
+        updateDifficulty();
+        updateMoney();
+    }
+}
+
+function buyMiner(minerType)
+{
+    switch(minerType) {
+        case "calc":
+            if (money >= 15) {
+                money -= 15;
+                moneyPerSecond += 0.5;
+                updateMoney();
+                updatePerSecond();
+            } else {
+                notEnoughMoney();
+            }
+            break;
+        case "usb":
+            if (money >= 50) {
+                money -= 50;
+                moneyPerSecond += 5;
+                updateMoney();
+                updatePerSecond();
+            } else {
+                notEnoughMoney();
+            }
+            break;
+        case "gpu":
+            if (money >= 100) {
+                money -= 100;
+                moneyPerSecond += 15;
+                updateMoney();
+                updatePerSecond();
+            } else {
+                notEnoughMoney();
+            }
+            break;
+        case "server":
+            if (money >= 500) {
+                money -= 500;
+                moneyPerSecond += 100;
+                updateMoney();
+                updatePerSecond();
+            } else {
+                notEnoughMoney();
+            }
+            break;
+        case "asic":
+            if (money >= 1000) {
+                money -= 1000;
+                moneyPerSecond += 250;
+                updateMoney();
+                updatePerSecond();
+            } else {
+                notEnoughMoney();
+            }
+            break;
+    }
+}
+
+function notEnoughMoney()
+{
+    document.getElementById("error-display").innerText = "Not enough money.";
+    setTimeout(() => {  document.getElementById("error-display").innerText = ""; }, 750);
+}
+
+//setInterval( function() {  money += moneyPerSecond; updateMoney(); }, 1000 );
+setInterval( function() {  miningDifficulty -= moneyPerSecond; updateDifficulty(); }, 1000 );
+
+function save()
+{
+    localStorage.setItem('currentMoney', money);
+    localStorage.setItem('moneyPerSecond', moneyPerSecond);
+    localStorage.setItem('miningDifficulty', miningDifficulty);
+    localStorage.setItem('level', level);
+    //console.log(localStorage);
+}
+
+function load()
+{
+    //-- Fractions are getting removed I think. --//
+    //console.log(localStorage);
+    if (parseFloat(localStorage.getItem('miningDifficulty', miningDifficulty)) > 10)
+    {
+        miningDifficulty = parseFloat(localStorage.getItem('miningDifficulty', miningDifficulty));
+    } else
+    {
+        miningDifficulty = 10;
+    }
+    if (parseFloat(localStorage.getItem('currentMoney', money)) > -1)
+    {
+        money = parseFloat(localStorage.getItem('currentMoney', money));
+    } else
+    {
+        money = 0;
+    }
+    if (parseFloat(localStorage.getItem('moneyPerSecond', moneyPerSecond)) > -1)
+    {
+        moneyPerSecond = parseFloat(localStorage.getItem('moneyPerSecond', moneyPerSecond));
+    } else
+    {
+        moneyPerSecond = 0;
+    }
+    if (parseFloat(localStorage.getItem('level', level)) > -1)
+    {
+        level = parseFloat(localStorage.getItem('level', level));
+    } else
+    {
+        level = 1;
+    }
+    updateMoney();
+    updatePerSecond();
+    updateDifficulty();
+}
+function reset()
+{
+    money = 0;
+    moneyPerSecond = 0;
+    miningDifficulty = 10;
+    level = 1;
+    localStorage.setItem('currentMoney', money);
+    localStorage.setItem('moneyPerSecond', moneyPerSecond);
+    localStorage.setItem('miningDifficulty', miningDifficulty);
+    localStorage.setItem('level', level);
+    updateMoney();
+    updatePerSecond();
+    updateDifficulty();
+    //console.log(localStorage);
+}
+</script>
