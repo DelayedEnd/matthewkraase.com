@@ -29,5 +29,5 @@
     transition: .4s ;
 }
 html, body {
-    overscroll-behavior: none;
+    overscroll-behavior: contain;
 }
