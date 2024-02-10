@@ -1,23 +1,82 @@
 <!DOCTYPE html>
-<html class="p-5 d-flex justify-content-center" lang="en" data-bs-theme="dark">
+<html lang="en" data-bs-theme="dark">
     <head>
-        <title>Welcome&nbsp;&nbsp;-&nbsp;&nbsp;MK</title>
-        <link rel="stylesheet" href="./assets/main.css"/>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-        <script type="text/javascript" src="./assets/main.js"></script>
+        <title>Home - Matthew Kraase</title>
+        <meta charset="utf-8">
+        <meta name="description" content="Personal portfolio website by Matthew Kraase. Featuring my past projects, work experience, and more.">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Matthew Kraase">
+        <link rel="canonical" href="https://matthewkraase.com/">
+
+        <!-- Bootstrap Integration -->
+        <link rel="stylesheet" href="lib/bootstrap.css">
+        <script src="lib/bootstrap.js"></script>
+        
+        <link rel="stylesheet" href="style.css">
+        <script src="script.js" defer></script>
     </head>
-    <body>
-        <div>
-            <h1>Site under construction, come back for updates!</h1>
-            <div class="pt-5 d-flex justify-content-center align-items-center">
-                <h2 class="pe-3">Check out the beta site!</h2><span><a href="./beta/index.html" role="button" class="btn btn-success">Click Me!</a></span>
+    <header>
+        <nav class="navbar fixed-top navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+                <h1><a class="h1 text-decoration-none" id="titletext" href="https://matthewkraase.com/">Matthew Kraase</a></h1>
+                <div class="d-flex flex-row-reverse">
+                    <div id="navbarButtons" class="collapse navbar-collapse">
+                        <a class="navbarbutton btn btn-outline-success">Home</a>
+                        <a class="navbarbutton btn btn-outline-warning">Resume</a>
+                        <a class="navbarbutton btn btn-outline-danger">Projects</a>
+                    </div>
+                </div>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarButtons" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
             </div>
-        </div>
+        </nav>
+    </header>
+    <body>
+        <table>
+            <tr>
+                <td>
+                    <div id="card0" class="card text-black bg-success" style="display: inline-block; max-width: 90vw; width: 700px; padding: 20px;">
+                        <h2 class="card-title" style="text-align: center;">About Me</h2>
+                        <img src="mypicture.jpg" class="me-3" style="width: 50vw; height: 50vw; max-width: 190px; max-height: 190px; float: left;">
+                        <p class="card-text" style="text-align: justify;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce leo velit, eleifend in iaculis quis, pharetra nec augue. Nunc sed turpis vulputate, auctor erat at, tempor ex. Mauris venenatis, libero non aliquet faucibus, tortor nunc cursus odio, eu consequat ante felis in metus. Ut ac aliquam purus, id aliquet nunc. Duis sit amet neque varius, auctor libero a, fringilla massa. Curabitur quis leo eget nibh tincidunt sagittis. Suspendisse scelerisque magna in augue feugiat, vitae ultrices ex tincidunt. Phasellus et tincidunt risus. Mauris varius, dui quis rutrum faucibus, massa nisi ultrices felis, at hendrerit est orci ut ipsum. Ut eget interdum leo. Vivamus eu tellus eu diam tempor feugiat. Integer porttitor pellentesque cursus. Donec viverra elit at egestas sodales. In hac habitasse platea dictumst. Aliquam quis imperdiet lorem. Quisque rhoncus dolor eget arcu cursus, ut aliquam neque varius.</p>
+                    </div>
+                </td>
+                <td>
+                    <div id="0" class="cardline bg-success position-relative"></div>
+                </td>
+            </tr>
+        </table>
+        <table>
+            <tr>
+                <td>
+                    <div id="card1" class="card text-black bg-warning" style="display: inline-block; max-width: 90vw; width: 700px; padding: 20px;">
+                        <h2 class="card-title" style="text-align: center;">Resume</h2>
+                        <img src="mypicture.jpg" class="me-3" style="width: 50vw; height: 50vw; max-width: 190px; max-height: 190px; float: left;">
+                        <p class="card-text" style="text-align: justify;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce leo velit, eleifend in iaculis quis, pharetra nec augue. Nunc sed turpis vulputate, auctor erat at, tempor ex. Mauris venenatis, libero non aliquet faucibus, tortor nunc cursus odio, eu consequat ante felis in metus. Ut ac aliquam purus, id aliquet nunc. Duis sit amet neque varius, auctor libero a, fringilla massa. Curabitur quis leo eget nibh tincidunt sagittis. Suspendisse scelerisque magna in augue feugiat, vitae ultrices ex tincidunt. Phasellus et tincidunt risus. Mauris varius, dui quis rutrum faucibus, massa nisi ultrices felis, at hendrerit est orci ut ipsum. Ut eget interdum leo. Vivamus eu tellus eu diam tempor feugiat. Integer porttitor pellentesque cursus. Donec viverra elit at egestas sodales. In hac habitasse platea dictumst. Aliquam quis imperdiet lorem. Quisque rhoncus dolor eget arcu cursus, ut aliquam neque varius.</p>
+                    </div>
+                </td>
+                <td>
+                    <div id="1" class="cardline bg-warning position-relative"></div>
+                </td>
+            </tr>
+        </table>
+        <table>
+            <tr>
+                <td>
+                    <div id="card2" class="card text-black bg-danger" style="display: inline-block; max-width: 90vw; width: 700px; padding: 20px;">
+                        <h2 class="card-title" style="text-align: center;">Projects</h2>
+                        <img src="mypicture.jpg" class="me-3" style="width: 50vw; height: 50vw; max-width: 190px; max-height: 190px; float: left;">
+                        <p class="card-text" style="text-align: justify;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce leo velit, eleifend in iaculis quis, pharetra nec augue. Nunc sed turpis vulputate, auctor erat at, tempor ex. Mauris venenatis, libero non aliquet faucibus, tortor nunc cursus odio, eu consequat ante felis in metus. Ut ac aliquam purus, id aliquet nunc. Duis sit amet neque varius, auctor libero a, fringilla massa. Curabitur quis leo eget nibh tincidunt sagittis. Suspendisse scelerisque magna in augue feugiat, vitae ultrices ex tincidunt. Phasellus et tincidunt risus. Mauris varius, dui quis rutrum faucibus, massa nisi ultrices felis, at hendrerit est orci ut ipsum. Ut eget interdum leo. Vivamus eu tellus eu diam tempor feugiat. Integer porttitor pellentesque cursus. Donec viverra elit at egestas sodales. In hac habitasse platea dictumst. Aliquam quis imperdiet lorem. Quisque rhoncus dolor eget arcu cursus, ut aliquam neque varius.</p>
+                    </div>
+                </td>
+                <td>
+                    <div id="2" class="cardline bg-danger position-relative"></div>
+                </td>
+            </tr>
+        </table>
     </body>
-    <footer class="d-flex justify-content-center text-center fixed-bottom">
-        <div class="col-md-4 alert alert-warning " role="alert">
-            This site is NOT optimized for mobile use.
-        </div>
+    <footer>
+
     </footer>
 </html>

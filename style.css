@@ -1,0 +1,29 @@
+.navbarbutton {
+    margin: 10px;
+    font-weight: 700;
+    font-size: large;
+}
+.navbarbutton:hover {
+    color: black;
+}
+#titletext {
+    font-weight: 700;
+    font-size: larger;
+}
+body {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-left: 10px;
+    margin-right: 20px;
+    margin-top: 100px;
+}
+.card {
+    margin: 20px;
+}
+.cardline {
+    height: 100px;
+    width: 10px;
+    background-color: aqua;
+    border-radius: 10px;
+}
